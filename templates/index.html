@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<h1>🤖 AI Sentiment Analyzer</h1>
+
+<form method="POST">
+
+    <textarea
+    name="text"
+    placeholder="Type a review, comment, or message..."
+    required></textarea>
+
+    <button type="submit">
+        Analyze Sentiment
+    </button>
+
+</form>
+
+{% if result %}
+
+<div class="result">
+
+    <h2>Analysis Result</h2>
+
+    <p>
+        <strong>Text:</strong>
+        {{ result.text }}
+    </p>
+
+    {% if result.sentiment == "POSITIVE" %}
+
+        <p class="positive">
+            🟢 Positive
+        </p>
+
+    {% else %}
+
+        <p class="negative">
+            🔴 Negative
+        </p>
+
+    {% endif %}
+
+    <p>
+        <strong>Confidence:</strong>
+        {{ result.score }}%
+    </p>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
